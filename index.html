@@ -4,104 +4,869 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nilesh Ranjan Pal - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-color: #2a3990;
+            --secondary-color: #4665e6;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+            transition: all var(--transition-speed) ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        header p {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            margin-top: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0.5rem 1rem;
+        }
+
+        nav a {
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all var(--transition-speed) ease;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: white;
+            color: var(--primary-color);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            z-index: 1000;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* Projects Section */
+        .project {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: var(--light-bg);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .project:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .project h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .project p {
+            margin-bottom: 1rem;
+        }
+
+        .project ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project li {
+            margin-bottom: 0.5rem;
+        }
+
+        .project a {
+            display: inline-block;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .project a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Experience Section */
+        .experience {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            background-color: var(--light-bg);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .experience:hover {
+            transform: translateX(5px);
+            border-left-color: var(--primary-color);
+        }
+
+        .experience h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience p.date {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .experience li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education Section */
+        #education {
+            padding: 4rem 2rem;
+        }
+
+        .education-item {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        #skills ul.skill-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        #skills li.skill-category {
+            padding: 1rem;
+            background-color: var(--light-bg);
+            border-radius: 6px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        #skills li.skill-category:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        #skills h3.skill-title {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Interests Section */
+        #interests ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        #interests li {
+            background-color: var(--light-bg);
+            padding: 0.7rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all var(--transition-speed) ease;
+        }
+
+        #interests li:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Achievements Section */
+        #achievements ul {
+            list-style: none;
+        }
+
+        #achievements li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: var(--light-bg);
+            border-radius: 6px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        #achievements li:hover {
+            background-color: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        #achievements a {
+            display: block;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        #contact p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        #contact i {
+            margin-right: 10px;
+            color: var(--accent-color);
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Coursework Section */
+        #coursework ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        #coursework li {
+            background-color: var(--light-bg);
+            padding: 0.7rem 1.2rem;
+            border-radius: 6px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        #coursework li:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .section-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all var(--transition-speed) ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 0.8;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #f4f4f4;
+        }
+
+        body.dark-theme section {
+            background-color: #2a2a2a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-theme .project,
+        body.dark-theme .experience,
+        body.dark-theme #skills li.skill-category,
+        body.dark-theme #achievements li,
+        body.dark-theme .education-item,
+        body.dark-theme #interests li,
+        body.dark-theme #coursework li {
+            background-color: #333;
+        }
+
+        body.dark-theme .project:hover,
+        body.dark-theme .experience:hover,
+        body.dark-theme #skills li.skill-category:hover,
+        body.dark-theme #achievements li:hover,
+        body.dark-theme .education-item:hover,
+        body.dark-theme #interests li:hover,
+        body.dark-theme #coursework li:hover {
+            background-color: #444;
+        }
+
+        body.dark-theme a {
+            color: #61dafb;
+        }
+
+        body.dark-theme a:hover {
+            color: #a8e4ff;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                background-color: var(--primary-color);
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                padding-top: 60px;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            #skills ul.skill-list {
+                grid-template-columns: 1fr;
+            }
+            
+            #interests ul, #coursework ul {
+                justify-content: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+    </div>
+
     <header>
         <h1>Nilesh Ranjan Pal</h1>
         <p>B.Tech in Computer Science and Engineering</p>
         <p><a href="https://www.kgec.edu.in/" target="_blank">Kalyani Government Engineering College</a></p>
         <nav>
-            <ul>
+            <ul id="navMenu">
+                <li><a href="#education">Education</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#coursework">Coursework</a></li>
+                <li><a href="#interests">Interests</a></li>
                 <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>MH Classifier</h3>
-            <p>Hybrid Deep Learning Model for Transcript Classification.</p>
-            <a href="https://huggingface.co/spaces/billusanda007/foset-2024-app" target="_blank">View Project</a>
-        </div>
-        <div class="project">
-            <h3>Stress Visualizer</h3>
-            <p>Analyzing Stress Levels Through Text.</p>
-            <a href="https://huggingface.co/spaces/Enigma007/billu_gunda_op" target="_blank">View Project</a>
-        </div>
-        <div class="project">
-            <h3>HireGPT + DeepRank</h3>
-            <p>LLM-based Hiring Application with Resume Ranking.</p>
-            <a href="https://huggingface.co/spaces/billusanda007/HireGPT" target="_blank">View HireGPT</a>
-            <a href="https://huggingface.co/spaces/billusanda007/DeepRank" target="_blank">View DeepRank</a>
-            <a href="https://www.youtube.com/watch?v=d6_O4BnNMyk&t=3s&ab_channel=NileshAPI" target="_blank">Demo Video</a>
-        </div>
-    </section>
+    <div class="container">
+        <section id="education" class="section-fade">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>Bachelor of Technology in Computer Science and Engineering</h3>
+                <p>Kalyani Government Engineering College, Kalyani</p>
+                <p>2021 - 2025</p>
+                <p>CGPA: 8.94</p>
+            </div>
+        </section>
 
-    <section id="experience">
-        <h2>Experience</h2>
-        <div class="experience">
-            <h3>NLP Research Intern - <a href="https://iitd.ac.in/" target="_blank">IIT Delhi</a></h3>
-            <p>Working on counterspeech generation and hate speech detection.</p>
-        </div>
-        <div class="experience">
-            <h3>AI Research Intern - <a href="https://www.sc.edu/study/colleges_schools/engineering_and_computing/index.php" target="_blank">AI Institute of South Carolina</a></h3>
-            <p>Working on context-aligned text generation with LLMs.</p>
-        </div>
-        <div class="experience">
-            <h3>Engineering Intern - <a href="https://www.interviewkickstart.com/" target="_blank">Interview Kickstart</a></h3>
-            <p>Led ML model training and workflow optimizations.</p>
-        </div>
-    </section>
+        <section id="projects" class="section-fade">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>MH Classifier - Hybrid Deep Learning Model for Transcript Classification</h3>
+                <p>A Streamlit web application featuring a hybrid deep learning model for classifying mental health transcripts.</p>
+                <ul>
+                    <li>Implemented a CNN-LSTM Architecture that combines CONV-1D layers for feature extraction and LSTM layers for sequence modeling, achieving an accuracy of 84.15%.</li>
+                    <li>Developed comprehensive pre-processing pipeline including text cleaning, tokenization, and padding to properly prepare Reddit data for model input.</li>
+                </ul>
+                <a href="https://huggingface.co/spaces/billusanda007/foset-2024-app" target="_blank">View Project</a>
+            </div>
+            
+            <div class="project">
+                <h3>Stress Visualizer - Analyzing Stress Levels Through Text</h3>
+                <p>A Streamlit web application designed to evaluate text for stress indicators.</p>
+                <ul>
+                    <li>Implemented text analysis using Logistic Regression and TF-IDF vectorization to process and analyze text based on sentiment.</li>
+                    <li>Integrated GenAI API for advanced text assessment, displaying results via sentiment bar charts and a mental health radar chart.</li>
+                </ul>
+                <a href="https://huggingface.co/spaces/Enigma007/billu_gunda_op" target="_blank">View Project</a>
+            </div>
+            
+            <div class="project">
+                <h3>HireGPT + DeepRank - LLM-based Hiring Application with Resume Ranking</h3>
+                <p>A series of Streamlit web applications for HR process optimization with parsed resume ranking.</p>
+                <ul>
+                    <li>Developed a comprehensive HR application using Langchain, GPT, and ZapierNLA for workflow automation.</li>
+                    <li>Utilized GPT, DeepRank, and agents for job requirement refinement, resume parsing and screening, and preliminary question preparation.</li>
+                </ul>
+                <a href="https://huggingface.co/spaces/billusanda007/HireGPT" target="_blank">View HireGPT</a>
+                <a href="https://huggingface.co/spaces/billusanda007/DeepRank" target="_blank">View DeepRank</a>
+                <a href="https://www.youtube.com/watch?v=d6_O4BnNMyk&t=3s&ab_channel=NileshAPI" target="_blank">Demo Video</a>
+            </div>
+        </section>
 
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <ul>
-            <li><strong>Languages:</strong> C/C++, Python, SQL, MATLAB</li>
-            <li><strong>Libraries:</strong> NumPy, Pandas, Matplotlib, NLTK, Spacy</li>
-            <li><strong>ML Frameworks:</strong> TensorFlow, PyTorch, Scikit-Learn, LangChain</li>
-            <li><strong>Web Frameworks:</strong> Streamlit, Flask, FastAPI</li>
-            <li><strong>Tools:</strong> Git, GitHub, Jupyter Notebooks, VS Code</li>
-        </ul>
-    </section>
+        <section id="experience" class="section-fade">
+            <h2>Experience</h2>
+            <div class="experience">
+                <h3>NLP Research Intern - <a href="https://iitd.ac.in/" target="_blank">IIT Delhi</a></h3>
+                <p class="date">July 2024 - Present</p>
+                <p>Laboratory for Computational Social Systems (LCS2), under Prof. Tanmoy Chakraborty</p>
+                <ul>
+                    <li>Developing innovative counterspeech generation techniques using Deep Generative Models. (Ongoing)</li>
+                    <li>Contributing to the curation of a dataset of 2500+ memes for hate speech detection. (Ongoing)</li>
+                </ul>
+            </div>
+            
+            <div class="experience">
+                <h3>AI Research Intern - <a href="https://www.sc.edu/study/colleges_schools/engineering_and_computing/index.php" target="_blank">AI Institute of South Carolina</a></h3>
+                <p class="date">July 2024 - Present</p>
+                <p>Under the guidance of Prof. Amitava Das</p>
+                <ul>
+                    <li>Working on context-aligned text generation from LLMs using Retrieval Augmented Generation (RAG). (Ongoing)</li>
+                    <li>Testing and evaluating methods for reducing uncertainty in LLM responses.</li>
+                </ul>
+            </div>
+            
+            <div class="experience">
+                <h3>Engineering Intern - <a href="https://www.interviewkickstart.com/" target="_blank">Interview Kickstart</a></h3>
+                <p class="date">March 2024 - July 2024</p>
+                <ul>
+                    <li>Led the training and testing of diverse ML models, optimizing performance through curated datasets.</li>
+                    <li>Conducted analysis and end-to-end deployment of 20+ problems for IK.</li>
+                    <li>Proposed and implemented changes in the workflow of problem curation to improve efficiency.</li>
+                </ul>
+            </div>
+        </section>
 
-    <section id="achievements">
-        <h2>Achievements</h2>
-        <ul>
-            <li>
-                <a href="https://drive.google.com/file/d/1sr5rXmlZav99MtsduPzExE0USlaSXJDZ/edit" target="_blank">
-                    🏆 2nd Best Paper Presentation Award - FOSET 2024
-                </a>
-            </li>
-            <li>
-                <a href="https://drive.google.com/file/d/1oF34Yf4-l3GuE7ye8FBO3ef04oAHQeD6/view" target="_blank">
-                    🏆 2nd Runner-up at Hack Genesis 2024
-                </a>
-            </li>
-            <li>
-                <a href="https://drive.google.com/file/d/1cd8rPYjMZby2BVY3rWhQWTKUk27Oalr7/view" target="_blank">
-                    🏆 Selected for Amazon Machine Learning Summer School 2023
-                </a>
-            </li>
-        </ul>
-    </section>
+        <section id="skills" class="section-fade">
+            <h2>Technical Skills</h2>
+            <ul class="skill-list">
+                <li class="skill-category">
+                    <h3 class="skill-title">Languages</h3>
+                    <p>C/C++, Python, SQL, MATLAB</p>
+                </li>
+                <li class="skill-category">
+                    <h3 class="skill-title">Libraries</h3>
+                    <p>C++ STL, NumPy, Pandas, Matplotlib, NLTK, Spacy</p>
+                </li>
+                <li class="skill-category">
+                    <h3 class="skill-title">ML Frameworks</h3>
+                    <p>TensorFlow, PyTorch, Scikit-Learn, LangChain</p>
+                </li>
+                <li class="skill-category">
+                    <h3 class="skill-title">Web Frameworks</h3>
+                    <p>Streamlit, Gradio, Flask, FastAPI</p>
+                </li>
+                <li class="skill-category">
+                    <h3 class="skill-title">Dev Tools</h3>
+                    <p>Jupyter Notebooks, VS Code, Git, GitHub</p>
+                </li>
+            </ul>
+        </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:nileshpal530@gmail.com">nileshpal530@gmail.com</a></p>
-        <p><i class="fas fa-phone"></i> Phone: <a href="tel:+917001366080">+91-7001366080</a></p>
-        <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/smallboy713102" target="_blank">GitHub Profile</a></p>
-        <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/nilesh-ranjan-pal/" target="_blank">LinkedIn Profile</a></p>
-    </section>
+        <section id="coursework" class="section-fade">
+            <h2>Relevant Coursework</h2>
+            <ul>
+                <li>Linear Algebra</li>
+                <li>Probability & Statistics</li>
+                <li>Data Structures & Algorithms</li>
+                <li>Artificial Intelligence</li>
+            </ul>
+        </section>
+
+        <section id="interests" class="section-fade">
+            <h2>Areas of Interest</h2>
+            <ul>
+                <li>Data Analysis</li>
+                <li>Machine Learning</li>
+                <li>Deep Learning</li>
+                <li>Natural Language Processing</li>
+                <li>Prompt Engineering</li>
+                <li>Finetuning LLMs</li>
+            </ul>
+        </section>
+
+        <section id="achievements" class="section-fade">
+            <h2>Achievements</h2>
+            <ul>
+                <li>
+                    <a href="https://drive.google.com/file/d/1sr5rXmlZav99MtsduPzExE0USlaSXJDZ/edit" target="_blank">
+                        🏆 2nd Best Paper Presentation Award - Forum of Scientists, Engineers & Technologists (FOSET) 2024
+                    </a>
+                </li>
+                <li>
+                    <a href="https://drive.google.com/file/d/1oF34Yf4-l3GuE7ye8FBO3ef04oAHQeD6/view" target="_blank">
+                        🏆 2nd Runner-up at Hack Genesis 2024 by Christ (Deemed to be University), Delhi among top 50+ teams
+                    </a>
+                </li>
+                <li>
+                    <a href="https://drive.google.com/file/d/1cd8rPYjMZby2BVY3rWhQWTKUk27Oalr7/view" target="_blank">
+                        🏆 Selected for Amazon Machine Learning Summer School among top 3000 candidates in India (2023)
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contact" class="section-fade">
+            <h2>Contact</h2>
+            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:nileshpal530@gmail.com">nileshpal530@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> Phone: <a href="tel:+917001366080">+91-7001366080</a></p>
+            <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/smallboy713102" target="_blank">GitHub Profile</a></p>
+            <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/nilesh-ranjan-pal/" target="_blank">LinkedIn Profile</a></p>
+            <p><i class="fas fa-robot"></i> Hugging Face: <a href="https://huggingface.co/billusanda007" target="_blank">Hugging Face Profile</a></p>
+        </section>
+    </div>
 
     <footer>
         <p>&copy; 2025 Nilesh Ranjan Pal. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // DOM Elements
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const backToTop = document.getElementById('backToTop');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const sections = document.querySelectorAll('.section-fade');
+        const navLinks = document.querySelectorAll('nav a');
+
+        // Theme Toggle
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            if (document.body.classList.contains('dark-theme')) {
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeIcon.className = 'fas fa-sun';
+        }
+
+        // Back to Top Button
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+            
+            // Check which section is in view for navigation highlighting
+            updateActiveNavLink();
+            
+            // Reveal sections on scroll
+            revealSections();
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Mobile Navigation
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Update active navigation link based on scroll position
+        function updateActiveNavLink() {
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Reveal sections when scrolled into view
+        function revealSections() {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('section-visible');
+                }
+            });
+        }
+
+        // Initial call to reveal sections that are already in view
+        revealSections();
+        updateActiveNavLink();
+
+        // Project image hover effect with tilt
+        const projects = document.querySelectorAll('.project');
+        
+        projects.forEach(project => {
+            project.addEventListener('mousemove', (e) => {
+                const rect = project.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const xPercent = x / rect.width - 0.5;
+                const yPercent = y / rect.height - 0.5;
+                
+                project.style.transform = `perspective(1000px) rotateX(${yPercent * -5}deg) rotateY(${xPercent * 5}deg) scale(1.02)`;
+            });
+            
+            project.addEventListener('mouseleave', () => {
+                project.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+    </script>
 </body>
 </html>
+</antArtif
